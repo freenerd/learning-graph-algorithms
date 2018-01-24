@@ -1,0 +1,17 @@
+{
+  "name": "learning-graph-algorithms",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "pretest": "eslint *.js */*.js",
+    "test": "tape test/*.js"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "tape": "^4.5.1"
+  },
+  "author": "freenerd",
+  "private": false
+}
