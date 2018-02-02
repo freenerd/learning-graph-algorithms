@@ -1,3 +1,5 @@
+'use strict';
+
 const graph = require('./lib/graph');
 const dot = require('./lib/dot');
 

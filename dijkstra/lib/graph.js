@@ -1,14 +1,16 @@
+'use strict';
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function makeEdge(destination, weight) {
   weight = weight || getRandomInt(1, 50);
-  return { destination: destination, weight: weight };
+  return {destination: destination, weight: weight};
 }
 
 function generate(numNodes) {
-  if (numNodes === 1) throw 'Thats not a cool graph. Lets have at least 2 nodes';
+  if (numNodes === 1) throw new Error('Thats not a cool graph. Lets have at least 2 nodes');
 
   var nodes = [];
 
