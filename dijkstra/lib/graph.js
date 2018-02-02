@@ -1,5 +1,7 @@
 'use strict';
 
+const MAX_RANDOM_EDGES = 3;
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -9,34 +11,44 @@ function makeEdge(destination, weight) {
   return {destination: destination, weight: weight};
 }
 
+function isValidEdge(node, dest, index) {
+  // avoid self-reference
+  if (dest === index) return false;
+
+  // avoid duplicate edges
+  for (const edge of node) {
+    if (edge.destination === dest) return false;
+  }
+
+  return true;
+}
+
 function generate(numNodes) {
   if (numNodes === 1) throw new Error('Thats not a cool graph. Lets have at least 2 nodes');
 
-  var nodes = [];
+  let graph = [];
 
-  for (var i=0; i < numNodes; i++) {
-    var node = [];
+  for (let i = 0; i < numNodes; i++) {
+    let node = [];
 
-    // assure every node is connected to at least one other by making a circle
+    // make circular edges
+    //  - assures every node is reachable from every other node
+    //  - assures every node has at least one incoming and one outgoing edge
     node.push(makeEdge(i === numNodes - 1 ? 0 : i + 1));
 
-    for (var e=0; e < getRandomInt(0, 4); e++) {
-      var dest = getRandomInt(0, numNodes - 1);
-      if (
-        // avoid self-reference
-        dest !== i
-        &&
-        // avoid duplicate edges
-        node.find((e) => e.destination === dest) === undefined
-      ) {
+    // make random edges
+    const numEdges = getRandomInt(0, MAX_RANDOM_EDGES);
+    for (let e = 0; e < numEdges; e++) {
+      const dest = getRandomInt(0, numNodes - 1);
+      if (isValidEdge(node, dest, i)) {
         node.push(makeEdge(dest));
       }
     }
 
-    nodes.push(node);
+    graph.push(node);
   }
 
-  return nodes;
+  return graph;
 }
 
 module.exports.generate = generate;

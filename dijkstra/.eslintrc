@@ -1,7 +1,7 @@
 {
   "extends": "mourner",
   "rules": {
-    "space-before-function-paren": 0,
-    "indent": [2, 2]
+    "indent": [2, 2],
+    "no-var": "error"
   }
 }

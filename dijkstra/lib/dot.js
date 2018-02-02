@@ -1,7 +1,7 @@
 'use strict';
 
 function graphToDot(graph) {
-  var output = [];
+  let output = [];
 
   output.push('digraph dijkstra {');
   output.push('  node [shape="record" style="filled" color="grey79" fillcolor="grey79"];');
