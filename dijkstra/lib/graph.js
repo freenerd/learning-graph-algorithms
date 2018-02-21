@@ -51,24 +51,4 @@ function generate(numNodes) {
   return graph;
 }
 
-function toD3(graph) {
-  let o = {
-    nodes: [],
-    links: []
-  };
-
-  for (const node in graph) {
-    o.nodes.push({name: parseInt(node)});
-    for (const edge in graph[node]) {
-      o.links.push({
-        source: parseInt(node),
-        target: graph[node][edge].destination
-      });
-    }
-  }
-
-  return o;
-}
-
 module.exports.generate = generate;
-module.exports.toD3 = toD3;

@@ -27,28 +27,3 @@ tape('graph.generate', (assert) => {
 
   assert.end();
 });
-
-tape('graph.toD3', (assert) => {
-  const g = [
-    [{destination: 1, weight: 9}],
-    [{destination: 2, weight: 14}],
-    [{destination: 0, weight: 13}, {destination: 1, weight: 37}]
-  ];
-
-  const expected = {
-    nodes: [
-      {name: 0},
-      {name: 1},
-      {name: 2}
-    ],
-    links: [
-      {source: 0, target: 1},
-      {source: 1, target: 2},
-      {source: 2, target: 0},
-      {source: 2, target: 1}
-    ]
-  };
-
-  assert.deepEqual(graph.toD3(g), expected, 'has d3 graph structure');
-  assert.end();
-});
