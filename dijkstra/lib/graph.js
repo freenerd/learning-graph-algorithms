@@ -73,3 +73,6 @@ function generate(numNodes) {
 }
 
 module.exports.generate = generate;
+module.exports.Graph = Graph;
+module.exports.Node = Node;
+module.exports.Edge = Edge;
