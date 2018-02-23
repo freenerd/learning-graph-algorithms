@@ -4,7 +4,6 @@ const tape = require('tape');
 
 const graph = require('../lib/graph');
 
-
 tape('graph.generate', (assert) => {
   function testGraph(g, length) {
     assert.equal(g.length, length, `g${length}: has expected length`);
