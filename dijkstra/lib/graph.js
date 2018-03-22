@@ -1,10 +1,12 @@
 'use strict';
 
+const seedrandom = require('seedrandom');
+
 const MAX_RANDOM_EDGES = 3;
 
 class Edge {
   constructor(destination, weight) {
-    this.weight = weight || getRandomInt(1, 50);
+    this.weight = weight;
     this.destination = destination;
   }
 }
@@ -29,10 +31,6 @@ class Graph {
   }
 }
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
 function isValidEdge(node, dest, index) {
   // avoid self-reference
   if (dest === index) return false;
@@ -45,7 +43,14 @@ function isValidEdge(node, dest, index) {
   return true;
 }
 
-function generate(numNodes) {
+function generate(numNodes, seed) {
+  const random = seedrandom(seed);
+  console.log(`Generating random graph from seed ${random.int32()}`);
+
+  function getRandomInt(min, max) {
+    return Math.floor(random() * (max - min)) + min;
+  }
+
   if (numNodes === 1) throw new Error('Thats not a cool graph. Lets have at least 2 nodes');
 
   const graph = new Graph();
@@ -57,14 +62,14 @@ function generate(numNodes) {
     //  - assures every node is reachable from every other node
     //  - assures every node has at least one incoming and one outgoing edge
     const dest = (i === numNodes - 1 ? 0 : i + 1);
-    node.push(new Edge(dest));
+    node.push(new Edge(dest, getRandomInt(1, 50)));
 
     // make random edges
     const numEdges = getRandomInt(0, MAX_RANDOM_EDGES);
     for (let e = 0; e < numEdges; e++) {
       const dest = getRandomInt(0, numNodes - 1);
       if (isValidEdge(node, dest, i)) {
-        node.push(new Edge(dest));
+        node.push(new Edge(dest, getRandomInt(1, 50)));
       }
     }
 
