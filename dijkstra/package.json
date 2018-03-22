@@ -9,8 +9,9 @@
     "test": "tape test/*.js"
   },
   "dependencies": {
-    "viz.js": "1.8.0",
-    "tinyqueue": "1.2.3"
+    "seedrandom": "2.4.3",
+    "tinyqueue": "1.2.3",
+    "viz.js": "1.8.0"
   },
   "devDependencies": {
     "browserify": "^16.0.0",

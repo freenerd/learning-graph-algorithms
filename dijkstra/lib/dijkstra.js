@@ -3,7 +3,7 @@
 const TinyQueue = require('tinyqueue');
 
 function shortestPath(graph, start, destination) {
-  const queue = new TinyQueue([], (a, b) => { return a.distance > b.distance; });
+  const queue = new TinyQueue([], (a, b) => a.distance > b.distance);
   const distances = {};
   const predecessor = {};
 
@@ -12,11 +12,11 @@ function shortestPath(graph, start, destination) {
   queue.push({index: start, distance: distances[start]});
 
   while (queue.length !== 0 && queue.peek().index !== destination) {
-    let node = queue.pop();
+    const node = queue.pop();
 
-    graph.nodes[node.index].edges.forEach((edge) => {
-      let tentativeWeight = distances[node.index] + edge.weight;
-      let distance = distances[edge.destination];
+    for (const edge of graph.nodes[node.index].edges) {
+      const tentativeWeight = distances[node.index] + edge.weight;
+      const distance = distances[edge.destination];
 
       if (distance === undefined || tentativeWeight < distance) {
         // set destinations new weight since it's shorter
@@ -29,7 +29,7 @@ function shortestPath(graph, start, destination) {
           distance: distances[edge.distance]
         });
       }
-    });
+    }
   }
 
   // no path found
@@ -38,13 +38,13 @@ function shortestPath(graph, start, destination) {
   }
 
   // collect path
-  let path = [destination];
+  const path = [destination];
   let backtrack = destination;
   while (predecessor[backtrack]) {
-    path.unshift(predecessor[backtrack].index);
     backtrack = predecessor[backtrack].index;
+    path.unshift(backtrack);
   }
   return {path: path, distance: distances[destination]};
 }
 
-module.exports.shortestPath = shortestPath;
+exports.shortestPath = shortestPath;
