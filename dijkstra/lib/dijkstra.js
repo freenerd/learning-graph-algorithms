@@ -3,7 +3,7 @@
 const TinyQueue = require('tinyqueue');
 
 function shortestPath(graph, start, destination) {
-  const queue = new TinyQueue([], (a, b) => a.distance > b.distance);
+  const queue = new TinyQueue([], (a, b) => a.distance - b.distance);
   const distances = {};
   const predecessor = {};
 

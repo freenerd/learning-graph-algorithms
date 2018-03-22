@@ -44,9 +44,13 @@ tape('has shortest path on known bigger graph', (assert) => {
   assert.end();
 });
 
-tape('works with random graph', (assert) => {
-  let g = graph.generate(20);
-  let result = dijkstra.shortestPath(g, 0, 15);
+tape('has shortest path on big graph', (assert) => {
+  let g = graph.generate(100000, 'myseed');
+
+  console.time('djikstra');
+  let result = dijkstra.shortestPath(g, 0, 9000);
+  console.timeEnd('djikstra');
+
   assert.ok(result.path, 'has path');
   assert.ok(result.distance, 'has distance');
   assert.end();
