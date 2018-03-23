@@ -1,16 +1,15 @@
 'use strict';
 
 function graphToDot(graph) {
-  let output = [];
+  const output = [];
 
   output.push('digraph dijkstra {');
   output.push('  node [shape="record" style="filled" color="grey79" fillcolor="grey79"];');
 
-  graph.forEach((node, i) => {
-    var color = 'grey79';
-    if(Math.random() < 0.5) color = 'red';
+  graph.nodes.forEach((node, i) => {
+    const color = 'grey79';
     output.push(`  "${i}" [style="filled" color="grey79" fillcolor="${color}"];`);
-    node.forEach((edge) => {
+    node.edges.forEach((edge) => {
       output.push(`  "${i}" -> "${edge.destination}" [ label="${edge.weight}" ];`);
     });
   });
@@ -20,4 +19,4 @@ function graphToDot(graph) {
   return output.join('\n');
 }
 
-module.exports.graphToDot = graphToDot;
+exports.graphToDot = graphToDot;

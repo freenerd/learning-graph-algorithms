@@ -9,6 +9,8 @@
     "test": "tape test/*.js"
   },
   "dependencies": {
+    "seedrandom": "2.4.3",
+    "tinyqueue": "1.2.3",
     "viz.js": "1.8.0"
   },
   "devDependencies": {
