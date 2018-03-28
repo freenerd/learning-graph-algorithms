@@ -5,7 +5,7 @@
 const dijkstra = require('../index.js');
 const viz = require('viz.js');
 
-const graph = dijkstra.graph.generate(10);
+const graph = dijkstra.graph.generate(15);
 
 function displayGraph(params) {
   let dot = dijkstra.dot.graphToDot(params);
@@ -18,7 +18,7 @@ function displayGraph(params) {
   }
 }
 
-const run = dijkstra.dijkstra.shortestPath(graph, 0, 5);
+const run = dijkstra.dijkstra.shortestPath(graph, 0, 12);
 
 function next() {
   const res = run.next();
