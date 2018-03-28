@@ -16,7 +16,7 @@ tape('has shortest path on known small graph', (assert) => {
   ]);
 
   assert.deepEqual(
-    dijkstra.shortestPath(g, 0, 2),
+    dijkstra.shortestPathFunc(g, 0, 2),
     {
       path: [0, 1, 2],
       distance: 4
@@ -35,7 +35,7 @@ tape('has shortest path on known bigger graph', (assert) => {
   ]);
 
   assert.deepEqual(
-    dijkstra.shortestPath(g, 0, 4),
+    dijkstra.shortestPathFunc(g, 0, 4),
     {
       path: [0, 1, 3, 4],
       distance: 7
@@ -48,7 +48,7 @@ tape('has shortest path on big graph', (assert) => {
   let g = graph.generate(100000, 'myseed');
 
   console.time('djikstra');
-  let result = dijkstra.shortestPath(g, 0, 9000);
+  let result = dijkstra.shortestPathFunc(g, 0, 9000);
   console.timeEnd('djikstra');
 
   assert.ok(result.path, 'has path');
@@ -64,7 +64,7 @@ tape('no path can be found', (assert) => {
   ]);
 
   assert.deepEqual(
-    dijkstra.shortestPath(g, 0, 2),
+    dijkstra.shortestPathFunc(g, 0, 2),
     {
       path: null,
       distance: null
